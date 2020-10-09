@@ -1,0 +1,78 @@
+{
+  "name": "material-server",
+  "version": "1.0.0",
+  "description": "物料服务",
+  "private": true,
+  "egg": {
+    "framework": "egg-cloud"
+  },
+  "scripts": {
+    "start": "npm run init && egg-scripts start --daemon --title=dida-material-server",
+    "start-dev": "egg-scripts start --daemon --env=dev --port=${PORT:-7002} --workers=${WORKERS:-4} --title=dida-material-service --sticky",
+    "start-local": "egg-scripts start --daemon --env=local --port=${PORT:-7002} --workers=${WORKERS:-4} --title=dida-material-service --sticky",
+    "restart-dev": "npm run stop && npm run start-dev",
+    "start-test": "egg-scripts start --daemon --env=test --port=${PORT:-7002} --workers=${WORKERS:-4} --title=dida-material-service --sticky",
+    "restart-test": "npm run stop && npm run start-test",
+    "start-uat": "egg-scripts start --daemon --env=uat --port=${PORT:-7002} --workers=${WORKERS:-4} --title=dida-material-service --sticky",
+    "restart-uat": "npm run stop && npm run start-uat",
+    "stop": "egg-scripts stop --title=dida-material-service",
+    "dev": "egg-bin dev",
+    "debug": "egg-bin debug",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "npm run lint && npm run cov",
+    "rpc": "egg-rpc-generator",
+    "init": "npm run rpc",
+    "autod": "autod"
+  },
+  "dependencies": {
+    "async-validator": "^3.2.3",
+    "circuit-fuses": "^4.0.4",
+    "compressing": "^1.5.1",
+    "egg-cloud": "^0.2.0",
+    "egg-router-plus": "^1.3.1",
+    "egg-scripts": "^2.10.0",
+    "egg-sequelize": "^5.2.1",
+    "fs-extra": "^8.1.0",
+    "koa-compress": "^3.0.0",
+    "koa-logger": "^3.2.1",
+    "mysql2": "^2.1.0",
+    "node-rsa": "^1.0.7",
+    "node-snowflake": "^0.0.1",
+    "randomstring": "^1.1.5",
+    "request": "^2.88.2",
+    "sequelize-cli": "^5.5.1",
+    "stream-wormhole": "^1.1.0",
+    "tar": "^6.0.1",
+    "validator": "^12.2.0",
+    "webhdfs": "^1.2.0"
+  },
+  "devDependencies": {
+    "autod": "^3.0.1",
+    "autod-egg": "^1.1.0",
+    "egg-bin": "^4.9.0",
+    "egg-ci": "^1.10.0",
+    "egg-mock": "^3.20.1",
+    "egg-rpc-generator": "^1.1.1",
+    "eslint": "^5.9.0",
+    "eslint-config-egg": "^7.1.0",
+    "webstorm-disable-index": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "ci": {
+    "version": "8"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "eslintIgnore": [
+    "coverage"
+  ],
+  "author": "leirensheng",
+  "license": "MIT"
+}
