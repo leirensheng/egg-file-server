@@ -1,1 +1,0 @@
-{"RemoteException":{"exception":"InvalidPathException","javaClassName":"org.apache.hadoop.fs.InvalidPathException","message":"Invalid path name Invalid file name: //user/test/log2.txt"}}

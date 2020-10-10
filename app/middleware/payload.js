@@ -24,10 +24,10 @@ module.exports = () => {
       ctx.status < 300) || !ctx.body) &&
       !isIgnored
     ) {
-      if (!ctx.body || (ctx.body && !ctx.body.code)) {
+      if (!ctx.body || ctx.body.code === undefined) {
         ctx.body = {
           code: 0,
-          payload: ctx.body,
+          data: ctx.body,
           message: '',
         };
       }

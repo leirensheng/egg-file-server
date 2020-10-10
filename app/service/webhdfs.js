@@ -13,7 +13,7 @@ const hdfs = WebHDFS.createClient({
 });
 
 
-class CollectService extends Service {
+class WebhdfsService extends Service {
 
   getDownloadPath(filePath) {
     return encodeURI(this.app.config.remote.webhdfs + filePath);
@@ -64,23 +64,6 @@ class CollectService extends Service {
   async uploadOne(localFileStream, pathToUpload) {
     console.log(pathToUpload);
     await new Promise((resolve, reject) => {
-
-
-      // const tempPath = path.resolve(__dirname, '../public', 'upload');
-      // if (!fs.existsSync(tempPath)) {
-      //   fs.mkdirSync(tempPath);
-      // }
-      // const fileName = path.resolve(tempPath, localFileStream.filename);
-      // console.log(fileName);
-      // const writeStream = fs.createWriteStream(fileName);
-      // localFileStream.pipe(writeStream);
-      // writeStream.on('finish', resolve);
-      // writeStream.on('error', e => {
-      //   // sendToWormhole(stream);
-      //   writeStream.destroy();
-      //   reject(e);
-      // });
-      // return;
       const remoteFileStream = hdfs.createWriteStream(pathToUpload + '/' + encodeURI(localFileStream.filename));
       localFileStream.pipe(remoteFileStream);
       remoteFileStream.on('error', function onError(err) {
@@ -100,34 +83,6 @@ class CollectService extends Service {
   async upload(localFileStream, pathToUpload) {
     await this.uploadOne(localFileStream, pathToUpload);
   }
-  // async upload(stream) {
-  //   try {
-  //     const basename = path.basename(stream.filename);
-  //     console.log(basename);
-
-  //     const tempPath = path.resolve(__dirname, '../public', 'upload');
-  //     if (!fs.existsSync(tempPath)) {
-  //       fs.mkdirSync(tempPath);
-  //     }
-  //     const fileName = path.resolve(tempPath, stream.filename);
-  //     console.log(fileName);
-  //     const writeStream = fs.createWriteStream(fileName);
-  //     await new Promise((resolve, reject) => {
-  //       stream.pipe(writeStream);
-  //       writeStream.on('finish', resolve);
-  //       writeStream.on('error', e => {
-  //         sendToWormhole(stream);
-  //         writeStream.destroy();
-  //         reject(e);
-  //       });
-  //     });
-
-
-  //   } catch (e) {
-  //     await sendToWormhole(stream);
-  //     throw e;
-  //   }
-  // }
 
   async download(arr, downloadPath) {
     if (!downloadPath) {
@@ -151,4 +106,4 @@ class CollectService extends Service {
   }
 }
 
-module.exports = CollectService;
+module.exports = WebhdfsService;

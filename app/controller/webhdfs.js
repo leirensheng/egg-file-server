@@ -31,7 +31,6 @@ class curController extends Controller {
     if (fileName.indexOf('zip') !== -1) {
       await tarUtils.zipDir(filePathWithoutFileName, filePath);
     }
-
     this.ctx.attachment(encodeURI(fileName));
     this.ctx.set('Content-Type', 'application/octet-stream');
     this.ctx.body = fs.createReadStream(filePath);

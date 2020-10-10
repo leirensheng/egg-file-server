@@ -90,6 +90,11 @@ module.exports = {
       '.pdf',
       '.msi',
       '.flac',
+      '.ttf',
+      '.woff',
+      '.scss',
+
+
     ],
     // fields: 100,
   },
